@@ -9,7 +9,7 @@ const notify = require('gulp-notify');
 const plumber = require('gulp-plumber');
 
 gulp.task('js', () => {
-    browserify('src/app.js')
+    browserify('src/app.js', {debug: true})
         .transform('babelify', {
             sourceMaps: true,
             presets: ['es2015','react']
