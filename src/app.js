@@ -12,36 +12,41 @@ const config = {
   };
   firebase.initializeApp(config);
 
-  	componentDidMount() {
-  		ajax({
-  			url: "https://itunes.apple.com/search",
-  			method: 'GET',
-  			dataType: 'jsonp',
-  			data: {
-  				term: "health and fitness",
-  				country: "US",
-          media: "podcast",
-  			}
-  		}).then(function(res) {
-  			   res.map((podcastDetails) => {
-            <h2>{podcastDetails.collectionName}</h2>
-            <img src="{podcastDetails.artworkUrl60}" alt=""/>
+class App extends React.Component {
+    constructor() {
+      super();
+      this.state = {
+        podcasts: []
+      }
+    }
+    componentDidMount() {
+      ajax({
+        url: 'https://itunes.apple.com/search',
+        method: 'GET',
+        dataType: 'jsonp',
+        data: {
+          term: 'comedy',
+          country: 'US',
+          media: 'podcast'
+        }
+      }).then((res) => {
+        console.log(res.results)
+        //  res.map((podcastDetails) => {
+        //     <h2>{podcastDetails.collectionName}</h2>
+        //     <img src={podcastDetails.artworkUrl60} alt=""/>
 
-           })
+        //    })
         // if (primaryGnereName ==== podcastGenre) {
         //   Comedy = comedy 
-             collectionName === podcastName
-             artwork
-        // }
-  		})
-  	}
-  }
-
-    class App extends React.Component {
-    render() {
+        //      collectionName === podcastName
+        //      artwork
+      });
+    }
+        render() {
       return (
           <div></div>
-      )
+        )
+    }
     }
 
   ReactDOM.render(<App />, document.getElementById('app'));
