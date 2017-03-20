@@ -19,32 +19,49 @@ class App extends React.Component {
         podcasts: []
       }
     }
+    handleClick() {
+      this.setState({
+
+      });
+    }
     componentDidMount() {
       ajax({
         url: 'https://itunes.apple.com/search',
         method: 'GET',
         dataType: 'jsonp',
         data: {
-          term: 'comedy',
+          term: 'Comedy',
           country: 'US',
-          media: 'podcast'
-        }
-      }).then((res) => {
-        console.log(res.results)
-        //  res.map((podcastDetails) => {
-        //     <h2>{podcastDetails.collectionName}</h2>
-        //     <img src={podcastDetails.artworkUrl60} alt=""/>
+          media: 'podcast',
+          entity: 'podcast',
+          genreIndex: 'Comedy'
 
-        //    })
-        // if (primaryGnereName ==== podcastGenre) {
-        //   Comedy = comedy 
-        //      collectionName === podcastName
-        //      artwork
+        }
+      }).then((podcastList) => {
+        console.log(podcastList.results)
+        this.setState({podcasts: podcastList.results});
       });
     }
         render() {
       return (
-          <div></div>
+          <div>
+            <header>
+              <h1>Pod Save the Day</h1>
+            </header>
+            <div className="podcastOptions">
+              {this.state.podcasts.map((podcast, i) => {
+                 if (podcast.primaryGenreName === "Comedy") {
+                return (
+                 
+                    <div className="podcastOptionsList" key={`podcast-${i}`}>
+                        <h4>{podcast.collectionName}</h4>
+                        <img src={podcast.artworkUrl100} alt=""/>
+                        <p></p>
+                    </div>
+                  )}
+              })}
+            </div>
+          </div>
         )
     }
     }
