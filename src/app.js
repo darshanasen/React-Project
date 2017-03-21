@@ -81,15 +81,18 @@ class App extends React.Component {
               {this.state.podcasts.map((podcast, i) => {
                
                   return (
+                    <div>
                     <div className="podcastOptionsList" key={`podcast-${i}`}>
                         <h4>{podcast.collectionName}</h4>
                         <img src={podcast.artworkUrl100} alt=""/>
                         <button><a href={podcast.trackViewUrl}>CAST OFF</a></button>
                     </div>
+                    <button>Load More</button>
+                    </div>
                   )
                 // }
               })}
-              <button>Load More</button>
+              
             </div>
           </div>
         )
