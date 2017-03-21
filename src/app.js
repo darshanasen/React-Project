@@ -5,22 +5,25 @@ import sweetalert from 'sweetalert';
 import Inputs from './components/Inputs.js';
 
 const config = {
-    apiKey: "AIzaSyBONPu54xv5ss_aGeSe7P1zNR9eiBOS1k0",
-    authDomain: "noted-d6e79.firebaseapp.com",
-    databaseURL: "https://noted-d6e79.firebaseio.com",
-    storageBucket: "noted-d6e79.appspot.com",
-    messagingSenderId: "528891283267"
-  };
-  firebase.initializeApp(config);
+    apiKey: "AIzaSyDqlKrkOgu_EG6We9pvcml1FC3TeICHb0M",
+    authDomain: "podsavetheday.firebaseapp.com",
+    databaseURL: "https://podsavetheday.firebaseio.com",
+    storageBucket: "podsavetheday.appspot.com",
+    messagingSenderId: "964120260101"
+};
+firebase.initializeApp(config);
 
 class App extends React.Component {
     constructor() {
       super();
       this.state = {
         podcasts: [],
-        term: ''
+        term: '',
+        items: []
       }
       this.handleClick = this.handleClick.bind(this);
+      this.addItem = this.addItem.bind(this);
+      this.removeItem = this.removeItem.bind(this);
     }
     handleClick(e) {
    
@@ -33,12 +36,29 @@ class App extends React.Component {
           country: 'US',
           media: 'podcast',
           entity: 'podcast',
-          attribute: 'descriptionTerm'
+          attribute: 'descriptionTerm',
+          limit: '10'
         }
       }).then((podcastList) => {
-        console.log(podcastList.results)
         this.setState({podcasts: podcastList.results});
       });
+    }
+    addItem(e, collectionName, artworkUrl100) {
+      e.preventDefault();
+      const usersPodcast = {
+        name: collectionName,
+        img: artworkUrl100
+      }
+      this.setState({
+        name: "",
+        img: ""
+      })
+      const dbRef = firebase.database().ref();
+      dbRef.push(usersPodcast)
+    }
+    removeItem(itemToRemove) {
+      const dbRef = firebase.database().ref(itemToRemove);
+      dbRef.remove();
     }
     render() {
       return (
@@ -81,21 +101,43 @@ class App extends React.Component {
               {this.state.podcasts.map((podcast, i) => {
                
                   return (
-                    <div>
                     <div className="podcastOptionsList" key={`podcast-${i}`}>
                         <h4>{podcast.collectionName}</h4>
                         <img src={podcast.artworkUrl100} alt=""/>
-                        <button><a href={podcast.trackViewUrl}>CAST OFF</a></button>
+                        <button><a href={podcast.trackViewUrl}>More Info</a></button>
+                        <button onClick={(e) => this.addItem(e, podcast.collectionName, podcast.artworkUrl100)}>Add to Collection</button>
                     </div>
-                    <button>Load More</button>
-                    </div>
+                    
                   )
                 // }
               })}
               
             </div>
+              <div className="podcastChoices">
+              <ul>
+                {this.state.items.map((item, i) => {
+                  return <li>{item.name}<img src={item.img} alt="" /><i onClick={() => this.removeItem(item.key)} className="fa fa-times" aria-hidden="true"></i></li>
+                })}
+              </ul>
+            </div>
           </div>
         )
+    }
+    componentDidMount() {
+      const dbRef = firebase.database().ref();
+      dbRef.on("value", (firebaseData) => {
+        const podcastArray = [];
+        const podcastData = firebaseData.val();
+
+        for (let podcastKey in podcastData) {
+          podcastData[podcastKey].key = podcastKey;
+          podcastArray.push(podcastData[podcastKey]);
+        }
+
+        this.setState({
+          items: podcastArray
+        })
+      })
     }
 }
 
