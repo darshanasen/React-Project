@@ -137,6 +137,9 @@ html {
 * {
   font-size: 1.6rem; }
 
+a {
+  text-decoration: none; }
+
 header {
   background-image: url(../../../Assets/radio-bkgd.jpg);
   background-size: cover;
@@ -145,66 +148,149 @@ header {
   display: flex;
   -ms-flex-direction: column;
       flex-direction: column;
-  padding: 5%;
-  height: 100vh; }
+  padding: 10%;
+  height: 100vh;
+  text-align: center; }
+
+div.header {
+  text-align: left; }
 
 h1 {
   font-family: "Homemade Apple", cursive;
   margin: 0;
   font-size: 7rem;
-  text-align: left;
   color: white; }
 
+@media (max-width: 450px) {
+  h1 {
+    font-size: 5rem; } }
+
 header div {
-  text-align: left;
   color: yellow;
-  font-family: "Amatic SC", cursive;
-  font-size: 3rem; }
+  font-family: "Amatic SC", cursive; }
 
 header div h4 {
-  font-size: 4rem;
-  color: #00ffba; }
+  font-size: 5rem;
+  color: #0fb98b; }
 
 header div button {
   border-radius: 10px;
   padding: 1%;
-  background: #6be9ff;
-  color: white; }
+  background: #6be9ff; }
+
+header div button:hover {
+  border-radius: 10px;
+  padding: 1%;
+  background-color: #0fb98b;
+  color: #6be9ff; }
+
+header div button a {
+  color: white;
+  font-size: 3rem; }
 
 div.podcastDisplay {
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-direction: column;
-      flex-direction: column; }
+  -ms-flex-direction: row;
+      flex-direction: row;
+  color: white;
+  background: url(../../../Assets/alice-moore-192526.jpg);
+  background-size: cover;
+  background-position: center; }
 
 div.podcastOptions {
+  width: 50%;
   display: -ms-flexbox;
-  display: flex; }
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap; }
+
+div.podcastOptionsList {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  margin: 5% 0;
+  width: 50%;
+  -ms-flex-align: center;
+      align-items: center; }
 
 div.podcastOptionsList h4 {
-  font-family: "Homemade Apple", cursive; }
+  font-family: "Amatic SC", cursive;
+  font-size: 3rem;
+  margin: 0;
+  color: rosybrown; }
 
 div.podcastOptionsList button {
-  font-family: "Amatic SC", cursive; }
+  font-family: "Amatic SC", cursive;
+  font-size: 2.5rem;
+  border-radius: 10px;
+  margin: 1%;
+  background-color: white;
+  color: cornflowerblue;
+  padding: 1%; }
 
-ul h2 {
-  font-family: "Homemade Apple", cursive; }
+div.podcastOptionsList button:hover {
+  background-color: cornflowerblue;
+  color: white; }
+
+div.podcastOptionsList a {
+  color: cornflowerblue; }
+
+div.podcastOptionsList a:hover {
+  color: white; }
+
+div.podcastOptionsList a:visited {
+  color: purple; }
+
+@media (max-width: 768px) {
+  div.podcastOptionsList button:active {
+    background-color: grey;
+    color: white; } }
+
+div.podcastOptionsList a {
+  font-family: "Amatic SC", cursive;
+  font-size: 2.5rem; }
+
+div.podcastChoices {
+  width: 50%; }
+
+ul {
+  list-style-type: none;
+  padding: 0; }
+
+ul h3 {
+  font-family: "Homemade Apple", cursive;
+  font-size: 3rem;
+  text-align: center; }
 
 ul li {
-  font-family: "Amatic SC", cursive; }
+  font-family: "Amatic SC", cursive;
+  font-size: 2.5rem;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-align: center;
+      align-items: center;
+  margin: 10%; }
 
 div.genreChoice {
   background-image: url(../../Assets/bg-polygon2.jpg);
   width: 100%;
-  background-size: cover; }
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 7%; }
 
 div.genreChoice h2 {
   margin: 0;
   font-size: 4rem;
-  padding: 5%;
   text-align: center;
   font-family: "Homemade Apple", cursive;
-  color: #8d7070; }
+  color: #8d7070;
+  padding-bottom: 5%; }
 
 div.genreChoice input {
   display: none; }
@@ -219,8 +305,19 @@ div.inputs {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap; }
 
+div.inputs label {
+  cursor: pointer; }
+
 div.inputs img {
   padding: 20%; }
+
+div.inputs label:hover {
+  transform: scale(1.2); }
+
+@media (max-width: 768px) {
+  div.inputs label:active {
+    background-color: #459e92;
+    border: 2px solid #ffff00; } }
 
 div.inputs p {
   text-align: center;

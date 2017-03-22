@@ -7,17 +7,20 @@
 div.genreChoice {
 	background-image: url(../../Assets/bg-polygon2.jpg);
 	width: 100%;
-	// position: fixed;
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
 	background-size: cover;
+	padding: 7%;
 }
 
 div.genreChoice h2 {
 	margin: 0;
 	font-size: 4rem;
-	padding: 5%;
 	text-align: center;
 	font-family: $headerFont;
 	color: #8d7070;
+	padding-bottom: 5%;
 }
 
 div.genreChoice input {
@@ -31,8 +34,23 @@ div.inputs {
 	flex-wrap: wrap;
 } 
 
+div.inputs label {
+	cursor: pointer;
+}
+
 div.inputs img {
 	padding: 20%;
+}
+
+div.inputs label:hover {
+	transform: scale(1.2);
+}
+
+@media (max-width: 768px) {
+	div.inputs label:active {
+	background-color: #459e92;
+	border: 2px solid #ffff00;
+}
 }
 
 div.inputs p {

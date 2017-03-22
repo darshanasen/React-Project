@@ -45,6 +45,7 @@ class App extends React.Component {
     }
     addItem(e, collectionName, artworkUrl100) {
       e.preventDefault();
+      console.log("add")
       const usersPodcast = {
         name: collectionName,
         img: artworkUrl100
@@ -64,14 +65,16 @@ class App extends React.Component {
       return (
           <div>
             <header>
-              <h1>The <br/>Podfather</h1>
-              <div>
-                <h4>A Podcast Search Tool</h4>
-                <button>Let's Cast Off</button>
+              <div className="header">
+                <h1>The <br/>Podfather</h1>
+                <div>
+                  <h4>A Podcast Search Tool</h4>
+                  <button><a href="#castOff">Let's Cast Off</a></button>
+                </div>
               </div>
             </header>
             <div className="genreChoice">
-              <h2>Choose your own Podventure:</h2>
+              <h2 id="castOff">Choose your own Podventure:</h2>
                 <div className="inputs">
                   <input type="radio" id="Comedy" name="genreType" value="Comedy" onClick={this.handleClick} />
                     <label htmlFor="Comedy">
@@ -110,14 +113,14 @@ class App extends React.Component {
                     </label>
                   </div>
             </div>
-            <div className="podcastDisplay">
+            <div className="podcastDisplay" id="podcasts">
               <div className="podcastOptions">
                 {this.state.podcasts.map((podcast, i) => {
                     return (
                       <div className="podcastOptionsList" key={`podcast-${i}`}>
                           <h4>{podcast.collectionName}</h4>
                           <img src={podcast.artworkUrl100} alt=""/>
-                          <button><a href={podcast.trackViewUrl}>More Info</a></button>
+                          <button><a href={podcast.trackViewUrl} target="_blank">More Info</a></button>
                           <button onClick={(e) => this.addItem(e, podcast.collectionName, podcast.artworkUrl100)}>Add to Collection</button>
                       </div>
                       
@@ -128,7 +131,7 @@ class App extends React.Component {
               </div>
                 <div className="podcastChoices">
                 <ul>
-                <h2>Your Picks</h2>
+                <h3>Your Picks</h3>
                   {this.state.items.map((item, i) => {
                     return <li>{item.name}<img src={item.img} alt="" /><i onClick={() => this.removeItem(item.key)} className="fa fa-times" aria-hidden="true"></i></li>
                   })}
