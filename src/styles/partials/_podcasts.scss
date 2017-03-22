@@ -1,0 +1,24 @@
+div.podcastDisplay {
+	display: flex;
+	flex-direction: column;
+}
+
+div.podcastOptions {
+	display: flex;
+}
+
+div.podcastOptionsList h4 {
+	font-family: $headerFont;
+}
+
+div.podcastOptionsList button {
+	font-family: $subFont;
+}
+
+ul h2 {
+	font-family: $headerFont;
+}
+
+ul li{
+	font-family: $subFont;
+}

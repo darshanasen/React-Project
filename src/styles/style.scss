@@ -1,2 +1,44 @@
-body {
-  background-color: green; }
+@import 'partials/setup';
+@import 'partials/global';
+@import 'partials/header';
+@import 'partials/variables';
+@import 'partials/podcasts';
+
+div.genreChoice {
+	background-image: url(../../Assets/bg-polygon2.jpg);
+	width: 100%;
+	// position: fixed;
+	background-size: cover;
+}
+
+div.genreChoice h2 {
+	margin: 0;
+	font-size: 4rem;
+	padding: 5%;
+	text-align: center;
+	font-family: $headerFont;
+	color: #8d7070;
+}
+
+div.genreChoice input {
+	display: none;
+}
+
+div.inputs {
+	display: flex;
+	justify-content: space-around;
+	flex-direction: row;
+	flex-wrap: wrap;
+} 
+
+div.inputs img {
+	padding: 20%;
+}
+
+div.inputs p {
+	text-align: center;
+	font-family: $subFont;
+	font-size: 3rem;
+	color: #ffff00;
+	font-weight: 500px;
+}
